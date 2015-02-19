@@ -1,5 +1,7 @@
 package ap_lab1;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -10,51 +12,84 @@ import java.io.IOException;
 public class AP_Lab1 {
 
     public static void main(String[] args) throws IOException {
-        //int [][]A = new int [2][3];
-        /*
-        Matrix A = new Matrix();
-        A.num_rows = 3;
-        A.num_cols = 3;
-        A.vals = new int[A.num_rows][A.num_cols];
+        Scanner input = new Scanner(System.in);
         
-        Matrix B = new Matrix();
-        B.num_rows = 3;
-        B.num_cols = 3;
-        B.vals = new int[B.num_rows][B.num_cols];
+        System.out.println("Press 1 for Automated Testing\nPress 2 for Manual Testing");
+        int choice = input.nextInt();
         
-        for (int i=0;i<A.num_rows;i++) {
-            for(int j=0; j<A.num_cols; j++) {
-                A.vals[i][j] = i;
-            }
-        }
-        for (int i=0;i<B.num_rows;i++) {
-            for(int j=0; j<B.num_cols; j++) {
-                B.vals[i][j] = i;
-            }
-        }*/
-        test_automated();
-        //print the A matrix
-        /*
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-                System.out.print(A.vals[i][j]+" ");
-            System.out.println();
+        if(choice == 1)
+            test_automated();
+        else if(choice == 2)
+            test_manual();
+        else
+            System.out.println("Invalid choice. Program will now exit.");
+    }
+    
+    //starts user specific test
+    public static void test_manual() throws IOException {
+        System.out.println("\n*******MANUAL UNIT TESTING******\n");
+        //read file data
+        Reader fr = new Reader();
+        fr.read_file_user("C://Users//Abdul Moeed//Desktop//sample_test.txt"); //data file path
+        System.out.println("___File Data___");
+        //dump matrix list
+        System.out.println("Expression: "+fr.expression);
+        for(int i=0; i<fr.total_lines; i++) {
+            System.out.println("Line(Matrix) "+(i+1)+": "+fr.matrices.get(i));
         }
         System.out.println();
-        //print the B matrix
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-                System.out.print(B.vals[i][j]+" ");
+        
+        //populate matrices by data given in file
+        Matrix[] matrix_array = new Matrix[fr.total_lines];
+        for(int i=0; i<matrix_array.length; i++) {
+            populate_matrix(fr.matrices.get(i), matrix_array, i);
+        }
+        
+        eval_expression(matrix_array,fr);
+    }
+    
+    //evaluates expression in sample(manual) test
+    public static void eval_expression(Matrix[] matrix_array, Reader fr) {
+        int exp_len = fr.expression.length();
+        fr.operations = new ArrayList<Character>();
+        
+        //extract operations from file expression
+        for(int i=0; i<exp_len; i++) {
+            if(fr.expression.charAt(i) == '+')
+                fr.operations.add('+');
+            else if(fr.expression.charAt(i) == '-')
+                fr.operations.add('-');
+            else if(fr.expression.charAt(i) == '*')
+                fr.operations.add('*');
+            else {}
+        }
+        
+        //solve expression
+        Matrix temp = new Matrix();
+        temp = matrix_array[0];
+        
+        for(int i=0; i<fr.operations.size(); i++) {
+            if(fr.operations.get(i) == '+')
+                temp = matrix_addition(temp,matrix_array[i+1]);
+            if(fr.operations.get(i) == '-')
+                temp = matrix_subtraction(temp,matrix_array[i+1]);
+            if(fr.operations.get(i) == '*')
+                temp = matrix_multi(temp,matrix_array[i+1]);
+        }
+        
+        //dump final matrix
+        System.out.println("\n___Final Answer for "+fr.expression+"___");
+        for(int i=0; i<temp.num_rows; i++){
+            for(int j=0;j<temp.num_cols;j++)
+                System.out.print(temp.vals[i][j]+" ");
             System.out.println();
         }
-        System.out.println();
-        */
+        
     }
     
     //starts automated tests
     public static int test_automated() throws IOException{
+        System.out.println("\n*******AUTOMATED UNIT TESTING******\n");
         unit_test_1();
         unit_test_2();
         unit_test_3();
@@ -67,7 +102,7 @@ public class AP_Lab1 {
         
         //read file data
         Reader fr = new Reader();
-        fr.read_file("C://Users//Abdul Moeed//Desktop//unit_test_1.txt"); //data file path
+        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test_1.txt"); //data file path
         System.out.println("___File Data___");
         //dump matrix list
         for(int i=0; i<fr.total_lines; i++) {
@@ -89,7 +124,7 @@ public class AP_Lab1 {
         System.out.println("\n***Unit Test 2***");
         //read file data
         Reader fr = new Reader();
-        fr.read_file("C://Users//Abdul Moeed//Desktop//unit_test_2.txt"); //data file path
+        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test_2.txt"); //data file path
         System.out.println("___File Data___");
         for(int i=0; i<fr.total_lines; i++) {
             System.out.println("Line(Matrix) "+(i+1)+": "+fr.matrices.get(i));
@@ -112,7 +147,7 @@ public class AP_Lab1 {
         System.out.println("\n***Unit Test 3***");
         //read file data
         Reader fr = new Reader();
-        fr.read_file("C://Users//Abdul Moeed//Desktop//unit_test_3.txt"); //data file path
+        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test_3.txt"); //data file path
         System.out.println("___File Data___");
         for(int i=0; i<fr.total_lines; i++) {
             System.out.println("Line(Matrix) "+(i+1)+": "+fr.matrices.get(i));
