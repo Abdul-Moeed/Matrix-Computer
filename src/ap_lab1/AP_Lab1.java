@@ -30,7 +30,7 @@ public class AP_Lab1 {
         System.out.println("\n*******MANUAL UNIT TESTING******\n");
         //read file data
         Reader fr = new Reader();
-        fr.read_file_user("C://Users//Abdul Moeed//Desktop//sample_test.txt"); //data file path
+        fr.read_file_user("C://Users//Abdul Moeed//Desktop//sample_manual_test.txt"); //data file path
         System.out.println("___File Data___");
         //dump matrix list
         System.out.println("Expression: "+fr.expression);
@@ -102,7 +102,7 @@ public class AP_Lab1 {
         
         //read file data
         Reader fr = new Reader();
-        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test_1.txt"); //data file path
+        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test1_data.txt"); //data file path
         System.out.println("___File Data___");
         //dump matrix list
         for(int i=0; i<fr.total_lines; i++) {
@@ -124,7 +124,7 @@ public class AP_Lab1 {
         System.out.println("\n***Unit Test 2***");
         //read file data
         Reader fr = new Reader();
-        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test_2.txt"); //data file path
+        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test2_data.txt"); //data file path
         System.out.println("___File Data___");
         for(int i=0; i<fr.total_lines; i++) {
             System.out.println("Line(Matrix) "+(i+1)+": "+fr.matrices.get(i));
@@ -147,7 +147,7 @@ public class AP_Lab1 {
         System.out.println("\n***Unit Test 3***");
         //read file data
         Reader fr = new Reader();
-        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test_3.txt"); //data file path
+        fr.read_file_auto("C://Users//Abdul Moeed//Desktop//unit_test3_data.txt"); //data file path
         System.out.println("___File Data___");
         for(int i=0; i<fr.total_lines; i++) {
             System.out.println("Line(Matrix) "+(i+1)+": "+fr.matrices.get(i));
