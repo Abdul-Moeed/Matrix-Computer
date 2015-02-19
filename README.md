@@ -48,6 +48,8 @@ e.g
 A+B-C                   //first line of file
 
 1 2 3;4 5 6;7 8 9       //matrix 1
+
 1 1 1;2 2 2;3 3 3       //matrix 2
+
 2 1 2;3 1 3;4 2 1       //matrix 3 - will add first two matrices and subtract third from sum
 
