@@ -36,8 +36,8 @@ matrix:
         4 5 6
         
         7 8 9
-### Manual Test File Formate
-<Expression>
+### Manual Test File Format
+(Expression)
 
 a11 a12 a13;b21 b22 b23 //represents a matrix of dimensions 2x3
 
@@ -45,9 +45,9 @@ First line of file must contain expression. All subsequent lines must contain ma
 
 e.g
 
-A+B-C
+A+B-C                   //first line of file
 
-1 2 3;4 5 6;7 8 9
-1 1 1;2 2 2;3 3 3
-2 1 2;3 1 3;4 2 1       // will add first two matrices and subtract third from sum
+1 2 3;4 5 6;7 8 9       //matrix 1
+1 1 1;2 2 2;3 3 3       //matrix 2
+2 1 2;3 1 3;4 2 1       //matrix 3 - will add first two matrices and subtract third from sum
 
