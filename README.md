@@ -23,7 +23,7 @@ Advanced Programming - Lab 1 (Matrix operations and unit testing)
 ### Automated Test File Format
 a11 a12 a13;b21 b22 b23 //represents a matrix of dimensions 2x3 
 
-Every line of file represents a matrix. Rows are separated by ";" whereas columns are separated by " "
+Every line of file represents a matrix. Rows are separated by ";" whereas columns are separated by " ". No spaces before or after semicolon.
 
 e.g: 
 
@@ -41,7 +41,7 @@ matrix:
 
 a11 a12 a13;b21 b22 b23 //represents a matrix of dimensions 2x3
 
-First line of file must contain expression. All subsequent lines must contain matrices. Rows and columns format is the same as automated tests.
+First line of file must contain expression. All subsequent lines must contain matrices. Rows and columns' format is the same as automated tests.
 
 e.g
 
