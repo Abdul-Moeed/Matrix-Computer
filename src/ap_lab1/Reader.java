@@ -6,19 +6,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ 
  * @author Abdul Moeed
  */
 public class Reader {
     
-    int total_lines;
-    String expression;
-    ArrayList<String> matrices;
+    //class attributes
+    int total_lines; //lines in file
+    String expression;  //expression(if any)
+    ArrayList<Character> operations; //operations derived from expression(if any)
+    ArrayList<String> matrices; //lines or matrices present in file
     
-    public void read_file(String path) throws FileNotFoundException, IOException {
+    /*file reader for automated unit tests.
+    Does not get any expression just data*/
+    public void read_file_auto(String path) throws FileNotFoundException, IOException {
         FileReader fr = new FileReader(path);
         String line;
-        
+        //get each line
         try (BufferedReader buffer = new BufferedReader(fr)) {
             total_lines = 0;
             matrices = new ArrayList<String>();
@@ -28,8 +32,24 @@ public class Reader {
                 total_lines++;
             }
         }
-        //System.out.println("Lines: " + total_lines);
-        //lines.size();
-        //System.out.println("Array List size: " + lines.get(0));
     }
+    
+    /*file reader for manual unit testing.
+    Gets expression in first line of file*/
+    public void read_file_user(String path) throws FileNotFoundException, IOException {
+        FileReader fr = new FileReader(path);
+        String line;
+        //get each line
+        try (BufferedReader buffer = new BufferedReader(fr)) {
+            total_lines = 0;
+            matrices = new ArrayList<String>();         
+            expression = buffer.readLine(); //add expression
+    
+            while( (line = buffer.readLine()) != null){
+                matrices.add(line); //add to matrix list
+                total_lines++;
+            }
+        }
+    }
+    
 }
